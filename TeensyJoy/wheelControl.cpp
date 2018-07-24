@@ -111,7 +111,6 @@ returnVariables wheelControl::calculate(float newDesiredRPM, float desiredAngle,
     lastCycleSpeedCheck = speedCheck;
     speedCheckfloat = (hubKp * hubPerror) + (hubKd * hubDerror);
     speedCheck = (int)speedCheckfloat + (int)lastCycleSpeedCheck;
-    speedCheck = constrain(speedCheck, 40 , 400);//sets floor and ceiling...this may not be necessary KEEP THE 40, PID BREAKS WITHOUT IT
     if(desiredRPM == 0){
       speedCheck = 0;
     }

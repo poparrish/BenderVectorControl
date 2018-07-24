@@ -111,7 +111,7 @@ def start():
         ser.reset_input_buffer()
 
         #log changes to .csv file
-        writer = csv.writer(open('test11.csv', "wb"))
+        writer = csv.writer(open('test12.csv', "wb"))
         matrix.append(data)
 
         if count > 120:
