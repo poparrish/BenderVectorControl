@@ -138,14 +138,14 @@ def start():
 
         #write changes to wheels
         velocity_vector = metersTraveled * theta_dot * -1
-        ser.write(str('W0'+calcWheel(speed, velocity_vector, theta_dot, psi0, data[1])+'\n'))
-        ser.write(str('W1'+calcWheel(speed, velocity_vector, theta_dot, psi1, data[2])+'\n'))
-        ser.write(str('W2'+calcWheel(speed, velocity_vector, theta_dot, psi2, data[3])+'\n'))
-        ser.write(str('W3'+calcWheel(speed, velocity_vector, theta_dot, psi3, data[4])+'\n'))
+        ser.write(str('W0'+calcWheel(speed, velocity_vector, theta_dot, psi0)+'\n'))
+        ser.write(str('W1'+calcWheel(speed, velocity_vector, theta_dot, psi1)+'\n'))
+        ser.write(str('W2'+calcWheel(speed, velocity_vector, theta_dot, psi2)+'\n'))
+        ser.write(str('W3'+calcWheel(speed, velocity_vector, theta_dot, psi3)+'\n'))
         ser.reset_input_buffer()
 
         #log changes to .csv file
-        writer = csv.writer(open('test17.csv', "wb"))
+        writer = csv.writer(open('test18.csv', "wb"))
         matrix.append(data)
 
         if count > 120:

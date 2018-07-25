@@ -105,7 +105,7 @@ returnVariables wheelControl::calculate(float newDesiredRPM, float desiredAngle,
 
 //    //HUB PD START//
 //    hubKp = .01;
-//    hubKd = 0;
+    hubKd = .05;
     hubPerror = desiredRPM - curRPM;
 //    hubDerror = hubPerror - lasthubPerror;
 //    lastCycleSpeedCheck = speedCheck;
@@ -120,15 +120,19 @@ returnVariables wheelControl::calculate(float newDesiredRPM, float desiredAngle,
       int boostGain = 200;
       int boost = 0;
       //speedCheck = desiredRPM + 30;
-      if(abs(hubPerror) > 25){//POS
+      if(abs(hubPerror) > 25){// far away go full power or 0
         boost = hubPerror*boostGain;
       }
+//      else{ //if its close then do and integral so that the varying battery Voltage levels will noth affect it. 
+//        Ierror += Perror;//calculate integral term
+//      }
 //      if(hubPerror <-25){//NEG
 //        boost = hubPerror*boostGain;
 //        boost *= -1;
 //      }
       if(desiredRPM != 0){
         speedCheck = desiredRPM + 32 + boost;
+        speedCheck = speedCheck*hubDerror;
       }else{
         speedCheck = 0;
       }
