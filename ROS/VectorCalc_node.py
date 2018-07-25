@@ -21,7 +21,7 @@ def callback(data):
     global returnVectors
     speedCap = 1.2  # M/s
     deadBand = .05  # 5%
-    turnCap = 45  #degrees
+    turnCap = 45  #degrees for theta_dot
     slow = False
     stop = False
     yAxis = data.axes[1] * speedCap
@@ -120,8 +120,7 @@ def start():
     r = rospy.Rate(10)
     rospy.Subscriber("joy", Joy, callback)  # use this if joystick
     while not rospy.is_shutdown():
-        returnString = str(
-            str(int(returnVectors[0] * 100)) + ',' + str(int(returnVectors[1])) + ',' + str(int(returnVectors[2])))
+        returnString = str(str(int(returnVectors[0] * 100)) + ',' + str(int(returnVectors[1])) + ',' + str(int(returnVectors[2])))
         print returnString
         pub.publish(returnString)
         r.sleep()

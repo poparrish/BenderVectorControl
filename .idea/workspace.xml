@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7a8877de-cc3c-4b42-b646-989fad4e81ca" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CalculationTest.py" beforeDir="false" afterPath="$PROJECT_DIR$/CalculationTest.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TeensyJoy/TeensyJoy.ino" beforeDir="false" afterPath="$PROJECT_DIR$/TeensyJoy/TeensyJoy.ino" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TeensyJoy/wheelControl.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/TeensyJoy/wheelControl.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TeensyWrite_node.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/VectorCalcCSVlogger.py" beforeDir="false" afterPath="$PROJECT_DIR$/VectorCalcCSVlogger.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/VectorCalcTest.py" beforeDir="false" afterPath="$PROJECT_DIR$/VectorCalcTest.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/VectorCalc_node.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ROS/VectorCalc_node.py" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/VectorCalc_node.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -23,8 +16,8 @@
       <file leaf-file-name="VectorCalcCSVlogger.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/VectorCalcCSVlogger.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1335">
-              <caret line="89" column="45" lean-forward="true" selection-start-line="89" selection-start-column="45" selection-end-line="89" selection-end-column="45" />
+            <state relative-caret-position="1275">
+              <caret line="89" column="45" selection-start-line="89" selection-start-column="45" selection-end-line="89" selection-end-column="45" />
               <folding>
                 <element signature="e#22#33#0" expanded="true" />
               </folding>
@@ -32,11 +25,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TeensyWrite_node.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="TeensyWrite_node.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ROS/TeensyWrite_node.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-888">
-              <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="9" selection-end-column="41" />
+            <state relative-caret-position="15">
+              <caret line="6" selection-start-line="6" selection-end-line="9" selection-end-column="41" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="VectorCalc_node.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/ROS/VectorCalc_node.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="20" column="24" lean-forward="true" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -82,13 +84,14 @@
         <option value="$PROJECT_DIR$/VectorCalcTest.py" />
         <option value="$PROJECT_DIR$/VectorCalcCSVlogger.py" />
         <option value="$PROJECT_DIR$/CalculationTest.py" />
+        <option value="$PROJECT_DIR$/ROS/VectorCalc_node.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="4">
-    <option name="x" value="2248" />
+    <option name="x" value="1979" />
     <option name="y" value="24" />
-    <option name="width" value="952" />
+    <option name="width" value="1221" />
     <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -97,6 +100,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -104,11 +108,15 @@
               <item name="VectorSteering" type="b2602c69:ProjectViewProjectNode" />
               <item name="VectorSteering" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="VectorSteering" type="b2602c69:ProjectViewProjectNode" />
+              <item name="VectorSteering" type="462c0819:PsiDirectoryNode" />
+              <item name="ROS" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -171,9 +179,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="2248" y="24" width="952" height="1056" extended-state="4" />
+    <frame x="1979" y="24" width="1221" height="1056" extended-state="4" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.197479" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15397215" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="9" />
@@ -194,21 +203,21 @@
     <layout-to-restore>
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.0032119914" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32947367" />
-      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Python Console" order="7" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.32947367" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Message" order="0" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Python Console" order="7" />
     </layout-to-restore>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -220,6 +229,23 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/VectorCalcCSVlogger.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1275">
+          <caret line="89" column="45" lean-forward="true" selection-start-line="89" selection-start-column="45" selection-end-line="89" selection-end-column="45" />
+          <folding>
+            <element signature="e#22#33#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ROS/TeensyWrite_node.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="9" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/VectorCalcCSVlogger.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
@@ -284,16 +310,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1038">
           <caret line="84" lean-forward="true" selection-start-line="84" selection-end-line="84" />
-          <folding>
-            <element signature="e#22#33#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/VectorCalcCSVlogger.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1335">
-          <caret line="89" column="45" lean-forward="true" selection-start-line="89" selection-start-column="45" selection-end-line="89" selection-end-column="45" />
+        <state relative-caret-position="1275">
+          <caret line="89" column="45" selection-start-line="89" selection-start-column="45" selection-end-line="89" selection-end-column="45" />
           <folding>
             <element signature="e#22#33#0" expanded="true" />
           </folding>
@@ -302,8 +325,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ROS/TeensyWrite_node.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-888">
-          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="9" selection-end-column="41" />
+        <state relative-caret-position="15">
+          <caret line="6" selection-start-line="6" selection-end-line="9" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ROS/VectorCalc_node.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="20" column="24" lean-forward="true" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
         </state>
       </provider>
     </entry>
