@@ -5,7 +5,7 @@ import rospy
 from std_msgs.msg import String
 
 # Author: parker (the bodaciousjedi)
-# VectorCalc_node is subscribed to the 'joy' topic from the joy node
+# VectorCalc_node is subscribed to the 'joy' topic from the joy node: http://wiki.ros.org/joy
 # and publishes a list of vectors [speed, velocity_vector, theta_dot]
 # to the 'vectors' topic
 
