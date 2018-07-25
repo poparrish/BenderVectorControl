@@ -3,9 +3,16 @@ import math
 import time
 import serial
 
+
+# Author: parker (the bodaciousjedi)
+#VectorCalcTest is the script used to test how well the calcWheel() method works. To use it enter in the desired
+#speed and theta_dot. Since we don't have an IMU velocity_vector is determined by the total distance traveled which is
+#determined from data feedback from the Teensy. This script was how I determiend that the PD controllers needed work.
+#at lower speeds and higher theta_dots bender veered to the one side whereas the inverse configuration veered to the other.
+# This indicated that the PD controllers were not getting up to speed fast enough.
+
+
 ser = serial.Serial('/dev/ttyACM0', 250000)
-
-
 Hz = 30
 LENGTH = .66675
 WIDTH = .6223
@@ -17,7 +24,15 @@ psi3 = -43
 
 
 def calcWheel(speed, velocity_vector, theta_dot, wheel_psi):
-
+    """
+    this is the method that actually does the calculations. this takes desired vectors and outputs data for the
+    individual wheels. nearly identical to the writeup that Dr. Swanson produced.
+    :param speed: desired speed at center of Bender
+    :param velocity_vector: desired translational bearing
+    :param theta_dot: desired rotational vector
+    :param wheel_psi: location on the+-180 scale of each wheel
+    :return: wheelString. a string representing desired bearing and speed for the current wheel
+    """
 
     theta_dot_rad = theta_dot * 0.0174533
     rot_speed = math.fabs(theta_dot_rad) * RADIUS
@@ -57,12 +72,24 @@ def calcWheel(speed, velocity_vector, theta_dot, wheel_psi):
 
 
 def getLatestData():
+    """
+    parses the data in the serial buffer sent back from the teensy. Currently I believe we are sending the total
+    distance traveled in meters, the current angle of each planetary motor, and the current speed of each hub motor.
+    NOTE: this method will need to be updated to work with the current TeensyWrite_node. 7-25-18
+    :return:
+    """
     while ser.inWaiting() > 0:
         print ser.inWaiting()
         data = ser.readline()
         return data
 
 def start():
+    """
+    This is main method and runs at 30 Hz as determined by the global Hz var. This writes a particular speed to the Teensy
+    at 3 different intervals (40 ticks per interval right now). designed to only drive STRAIGHT. When time is up, a csv
+    file is created and gets populated with the matrix of logged data.
+    :return: nothing
+    """
     start = time.time()
     speed = .8
     theta_dot = 20

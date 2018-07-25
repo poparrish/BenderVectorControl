@@ -5,7 +5,7 @@
 
 
 wheelControl::wheelControl(){
-  Hz = 10;
+  Hz = 30;
   Pgain = 0.21;//final value
   Dgain = .25;//final value
   pulsesPerRot = 45;
@@ -104,24 +104,34 @@ returnVariables wheelControl::calculate(float newDesiredRPM, float desiredAngle,
     DerRPMerror = curRPM - lastcycleRPM;
 
 //    //HUB PD START//
-    hubKp = .5;
-    hubKd = 5;
+//    hubKp = .01;
+//    hubKd = 0;
     hubPerror = desiredRPM - curRPM;
-    hubDerror = hubPerror - lasthubPerror;
-    lastCycleSpeedCheck = speedCheck;
-    speedCheckfloat = (hubKp * hubPerror) + (hubKd * hubDerror);
-    speedCheck = (int)speedCheckfloat + (int)lastCycleSpeedCheck;
-    if(desiredRPM == 0){
-      speedCheck = 0;
-    }
-    lasthubPerror = hubPerror;
-    //HUB PD END//
-
-//      if(desiredRPM != 0){
-//        speedCheck = desiredRPM + 26;
-//      }else{
-//        speedCheck = 0;
+//    hubDerror = hubPerror - lasthubPerror;
+//    lastCycleSpeedCheck = speedCheck;
+//    speedCheckfloat = (hubKp * hubPerror) + (hubKd * hubDerror);
+//    speedCheck = (int)speedCheckfloat + (int)lastCycleSpeedCheck;
+//    if(desiredRPM == 0){
+//      speedCheck = 0;
+//    }
+//    lasthubPerror = hubPerror;
+//    //HUB PD END//
+    
+      int boostGain = 200;
+      int boost = 0;
+      //speedCheck = desiredRPM + 30;
+      if(abs(hubPerror) > 25){//POS
+        boost = hubPerror*boostGain;
+      }
+//      if(hubPerror <-25){//NEG
+//        boost = hubPerror*boostGain;
+//        boost *= -1;
 //      }
+      if(desiredRPM != 0){
+        speedCheck = desiredRPM + 32 + boost;
+      }else{
+        speedCheck = 0;
+      }
     
 
 

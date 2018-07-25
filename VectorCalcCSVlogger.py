@@ -2,14 +2,18 @@
 import math
 import time
 import serial
-from collections import deque
-import collections
 import csv
 import sys
 
+
+
+# Author: parker (the bodaciousjedi)
+#VectorCalcCSVlogger is the script used to tune the hub motors' PD controllers. It just drives
+#STRAIGHT at 3 different speed intervals set in the start()method and the data reported from
+#the teensy is recorded in the CSV file, which is also named in the start()method
+
+
 ser = serial.Serial('/dev/ttyACM0', 250000)
-
-
 Hz = 10
 LENGTH = .66675
 WIDTH = .6223
@@ -21,7 +25,16 @@ psi3 = -43
 matrix = []
 
 
-def calcWheel(speed, velocity_vector, theta_dot, wheel_psi, plan_angle):
+def calcWheel(speed, velocity_vector, theta_dot, wheel_psi):
+    """
+    this is the method that actually does the calculations. this takes desired vectors and outputs data for the
+    individual wheels. nearly identical to the writeup that Dr. Swanson produced.
+    :param speed: desired speed at center of Bender
+    :param velocity_vector: desired translational bearing
+    :param theta_dot: desired rotational vector
+    :param wheel_psi: location on the+-180 scale of each wheel
+    :return: wheelString. a string representing desired bearing and speed for the current wheel
+    """
 
     theta_dot_rad = theta_dot * 0.0174533
     rot_speed = math.fabs(theta_dot_rad) * RADIUS
@@ -61,6 +74,11 @@ def calcWheel(speed, velocity_vector, theta_dot, wheel_psi, plan_angle):
 
 
 def getLatestData():
+    """
+    parses the data in the serial buffer sent back from the teensy. Currently I believe we are sending the total
+    distance traveled in meters, the current angle of each planetary motor, and the current speed of each hub motor.
+    :return:
+    """
     while ser.inWaiting() > 0:
         print ser.inWaiting()
         toParse = ser.readline()
@@ -76,9 +94,25 @@ def getLatestData():
 
 
 def start():
+    """
+    this is the main method and runs every 10hz. This writes a particular speed to the Teensy
+    at 3 different intervals (determined by the global Hz var). designed to only drive STRAIGHT. When time is up, a csv
+    file is created and gets populated with the matrix of logged data.
+    :return: nothing
+    """
     global count
     global matrix
     start = time.time()
+    # print count
+    # if count < 40 :
+    #     speed = 1.4
+    #     #speed = .5
+    # elif (count > 40) and (count <= 80) :
+    #     speed = .9
+    # else:
+    #     speed = .4
+    # #speed = 1
+    # theta_dot = 0
     print count
     if count < 40 :
         speed = .4
@@ -111,7 +145,7 @@ def start():
         ser.reset_input_buffer()
 
         #log changes to .csv file
-        writer = csv.writer(open('test12.csv', "wb"))
+        writer = csv.writer(open('test17.csv', "wb"))
         matrix.append(data)
 
         if count > 120:

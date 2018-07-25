@@ -1,7 +1,10 @@
 #!/usr/bin/env python
 import math
-import time
 
+
+# Author: parker (the bodaciousjedi)
+#CalculationTest script is just used to verify that the numbers produced by the calcWheel method make sense. Enter in the
+#numbers you want to test in the main method and then the results will be printed to the terminal for each wheel.
 
 Hz = 10
 LENGTH = .66675
@@ -13,7 +16,18 @@ psi2 = -133
 psi3 = -43
 
 
+
 def calcWheel(speed, velocity_vector, theta_dot, wheel_psi):
+    """
+    this is the method that actually does the calculations. this takes desired vectors and outputs data for the
+    individual wheels. nearly identical to the writeup that Dr. Swanson produced.
+    :param speed: desired speed at center of Bender
+    :param velocity_vector: desired translational bearing
+    :param theta_dot: desired rotational vector
+    :param wheel_psi: location on the+-180 scale of each wheel
+    :return: wheelString. a string representing desired bearing and speed for the current wheel
+    """
+
     theta_dot_rad = theta_dot*0.0174533
     rot_speed = math.fabs(theta_dot_rad) * RADIUS
     rot_speed_deg = math.fabs(theta_dot) * RADIUS
@@ -56,9 +70,13 @@ def calcWheel(speed, velocity_vector, theta_dot, wheel_psi):
             return wheelString
 
 def start():
-
+    """
+    Main method. enter in values for the 3 variables and then they will be passed through to 4 instances of the calcWheel
+    method with the results printed to the terminal as strings. \n strings are the same data type written to the Teensy
+    :return: nothing
+    """
     #NOTE -velocity_vector cannot be translation theta...need new logic to do trans+rot
-    speed =
+    speed = 0
     theta_dot = 40
     velocity_vector = -45
 
