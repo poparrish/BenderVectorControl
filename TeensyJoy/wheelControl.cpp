@@ -105,7 +105,8 @@ returnVariables wheelControl::calculate(float newDesiredRPM, float desiredAngle,
 
 //    //HUB PD START//
 //    hubKp = .01;
-    hubKd = .05;
+//    hubKd = .1;
+    
     hubPerror = desiredRPM - curRPM;
 //    hubDerror = hubPerror - lasthubPerror;
 //    lastCycleSpeedCheck = speedCheck;
@@ -116,27 +117,73 @@ returnVariables wheelControl::calculate(float newDesiredRPM, float desiredAngle,
 //    }
 //    lasthubPerror = hubPerror;
 //    //HUB PD END//
-    
-      int boostGain = 200;
-      int boost = 0;
-      //speedCheck = desiredRPM + 30;
-      if(abs(hubPerror) > 25){// far away go full power or 0
-        boost = hubPerror*boostGain;
-      }
-//      else{ //if its close then do and integral so that the varying battery Voltage levels will noth affect it. 
-//        Ierror += Perror;//calculate integral term
-//      }
-//      if(hubPerror <-25){//NEG
+
+//2 BATTS MEDIUM POWER FORWARD/BACKWARD
+//      int boostGain = 10;
+//      int boost = 0;
+//      
+//      hubKi = .6;
+//      hubPerror = desiredRPM - curRPM;
+//      
+//
+//      
+//      if(abs(curRPM/desiredRPM < .9) or abs(desiredRPM/curRPM > 1.07)){// far away go full power or 0
 //        boost = hubPerror*boostGain;
-//        boost *= -1;
+//        hubIerror = 0;
+//      }else{//we only want i error to give extra juice if we are low
+//        hubIerror += hubPerror;
+//        hubIerror *= hubKi;
 //      }
-      if(desiredRPM != 0){
-        speedCheck = desiredRPM + 32 + boost;
-        speedCheck = speedCheck*hubDerror;
-      }else{
-        speedCheck = 0;
+//      if(desiredRPM != 0){
+//        speedCheck = desiredRPM + 32 + boost;
+//        speedCheck = speedCheck + hubIerror;
+//      }else{
+//        speedCheck = 0;
+//      }
+
+      
+
+      //SPEEDING UP
+      if(curRPM < desiredRPM){
+        int boostGain = 10;
+        int boost = 0;
+        hubKi = .6;
+        hubPerror = desiredRPM - curRPM;
+        if(abs(curRPM/desiredRPM < .7)){// far away go full power or 0
+          boost = hubPerror*boostGain;
+          hubIerror = 0;
+        }else{//we only want i error to give extra juice if we are low on batt
+          hubIerror += hubPerror;
+          hubIerror *= hubKi;
+        }
+        if(desiredRPM != 0){
+          speedCheck = desiredRPM + 32 + boost;
+          speedCheck = speedCheck + hubIerror;
+        }else{
+          speedCheck = 0;
+        }
       }
-    
+      //SLOWING DOWN
+      if(curRPM > desiredRPM){
+        int boostGain = 12;
+        int boost = 0;
+        hubKi = -.4;
+        hubPerror = desiredRPM - curRPM;
+        if(abs(desiredRPM/curRPM < .68)){// far away go  0
+          boost = hubPerror*boostGain;
+          hubIerror = 0;
+        }else{//we only want i error to give extra juice if we are low on batt
+          hubIerror += hubPerror;
+          hubIerror *= hubKi;
+        }
+        if(desiredRPM != 0){
+          speedCheck = desiredRPM + 32 + boost;
+          speedCheck = speedCheck + hubIerror;
+        }else{
+          speedCheck = 0;
+        }
+      }
+
 
 
 /*
@@ -209,6 +256,7 @@ returnVariables wheelControl::calculate(float newDesiredRPM, float desiredAngle,
   returnStruct.motorSpeed = intmotorSpeed;
   returnStruct.planMotorDirection = PlanMotDir;
   returnStruct.backToZero = backToZero; 
+  returnStruct.hubIerror = hubIerror;
   return returnStruct;   
 }
 

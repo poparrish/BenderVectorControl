@@ -107,7 +107,7 @@ def start():
     # if count < 40 :
     #     speed = 1.4
     #     #speed = .5
-    # elif (count > 40) and (count <= 80) :
+    # elif (count >= 40) and (count <= 80) :
     #     speed = .9
     # else:
     #     speed = .4
@@ -131,7 +131,7 @@ def start():
         #shift floats back to the correct decimal place. Shifted over prior to sending in arduino
         # to make python deserializing simpler
         metersTraveled = data[0]
-        metersTraveled = float(metersTraveled) / 100
+        #metersTraveled = float(metersTraveled) / 100
         data[0] = metersTraveled
         speedRPM = speed / 0.0085922
         data.append(speedRPM)
@@ -145,7 +145,7 @@ def start():
         ser.reset_input_buffer()
 
         #log changes to .csv file
-        writer = csv.writer(open('test18.csv', "wb"))
+        writer = csv.writer(open('test23.csv', "wb"))
         matrix.append(data)
 
         if count > 120:

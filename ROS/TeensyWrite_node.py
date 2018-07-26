@@ -144,6 +144,7 @@ def callback(data):
     """
     this runs everytime the ROS subscriber is updated. belive its every 10hz. This writes data to the teensy, and tracks
     for over wrapping on the wheels to avoid twisted wires.
+    NOTE: Teensy should return currentWheelAngle in the main class!
     :param data: list of 3 vectors recieved from subscriber
     :return: nothing
     """
@@ -180,6 +181,7 @@ def callback(data):
         desired_total_angle -= joyUpdate[1]
     current_angle = desired_angle
 
+
     #intelligent zeroing if wires wind up too much & writes data to the teensy
     if ((serial[1] or serial[2] or serial[3] or serial[4]) > (360*MAX_TURNS)) or ((serial[1] or serial[2] or serial[3] or serial[4]) < (-360 * MAX_TURNS)):
         reset = True
@@ -189,6 +191,8 @@ def callback(data):
             velocity_vector = desired_total_angle
             theta_dot = 0
             speed = vectors[0] * .01
+            print 'resetting'
+            print desired_total_angle
             ser.write(str('W0' + calcWheel(speed, velocity_vector, theta_dot, psi0) + '\n'))
             ser.write(str('W1' + calcWheel(speed, velocity_vector, theta_dot, psi1) + '\n'))
             ser.write(str('W2' + calcWheel(speed, velocity_vector, theta_dot, psi2) + '\n'))
@@ -196,7 +200,9 @@ def callback(data):
             ser.reset_input_buffer()
             if(serial[1] == 0 and serial[2] == 0 and serial[3] == 0 and serial[4] == 0):
                 reset = False
+                desired_total_angle = vectors[1]
         else:
+            print desired_total_angle
             velocity_vector = desired_total_angle
             theta_dot = 0
             speed = vectors[0] * .01

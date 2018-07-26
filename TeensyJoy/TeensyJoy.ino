@@ -598,15 +598,16 @@ void loop() {
     //remove decimal for transfer
     metersTraveled = metersTraveled*100;
     Serial.println(String(int(metersTraveled))+","
-                   +String(int(returnVariablesWheel0.speedCheck))+","
-                   +String(int(returnVariablesWheel1.speedCheck))+","
-                   +String(int(returnVariablesWheel2.speedCheck))+","
-                   +String(int(returnVariablesWheel3.speedCheck))+","
+                   +String(int(returnVariablesWheel0.currentWheelAngle))+","
+                   +String(int(returnVariablesWheel1.currentWheelAngle))+","
+                   +String(int(returnVariablesWheel2.currentWheelAngle))+","
+                   +String(int(returnVariablesWheel3.currentWheelAngle))+","
                    +String(int(returnVariablesWheel0.currentWheelRPM))+","
                    +String(int(returnVariablesWheel1.currentWheelRPM))+","
                    +String(int(returnVariablesWheel2.currentWheelRPM))+","
                    +String(int(returnVariablesWheel3.currentWheelRPM)));
 
+    //returnVariablesWheel0.hubIerror
     // if it changes to something above 50
        analogWrite(power0, LOW);
        analogWrite(vrPinWheel0, returnVariablesWheel0.speedCheck);
