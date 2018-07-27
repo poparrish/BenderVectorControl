@@ -9,7 +9,7 @@ import sys
 
 # Author: parker (the bodaciousjedi)
 #VectorCalcCSVlogger is the script used to tune the hub motors' PD controllers. It just drives
-#STRAIGHT at 3 different speed intervals set in the start()method and the data reported from
+#at speed intervals set in the start()method and the data reported from
 #the teensy is recorded in the CSV file, which is also named in the start()method
 
 
