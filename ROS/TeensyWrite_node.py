@@ -204,7 +204,7 @@ def callback(data):
         else:
             print desired_total_angle
             velocity_vector = desired_total_angle
-            theta_dot = 0
+            theta_dot = vectors[2]
             speed = vectors[0] * .01
             ser.write(str('W0' + calcWheel(speed, velocity_vector, theta_dot, psi0) + '\n'))
             ser.write(str('W1' + calcWheel(speed, velocity_vector, theta_dot, psi1) + '\n'))

@@ -531,22 +531,22 @@ void loop() {
     
     float AverageDeltaTimeWheel0 = AvgDeltaTimeWheel0;
     lastInterruptTimeWheel0 = LastIntTimeWheel0;
-    countWheel0 = 0;
+    //countWheel0 = 0;
     encoderPosWheel0 = encposWheel0;
 
     float AverageDeltaTimeWheel1 = AvgDeltaTimeWheel1;
     lastInterruptTimeWheel1 = LastIntTimeWheel1;
-    countWheel1 = 0;
+    //countWheel1 = 0;
     encoderPosWheel1 = encposWheel1;
 
     float AverageDeltaTimeWheel2 = AvgDeltaTimeWheel2;
     lastInterruptTimeWheel2 = LastIntTimeWheel2;
-    countWheel2 = 0;
+    //countWheel2 = 0;
     encoderPosWheel2 = encposWheel2;
 
     float AverageDeltaTimeWheel3 = AvgDeltaTimeWheel3;
     lastInterruptTimeWheel3 = LastIntTimeWheel3;
-    countWheel3 = 0;
+    //countWheel3 = 0;
     encoderPosWheel3 = encposWheel3;
     //Serial.println(encposWheel3);
     
@@ -597,15 +597,35 @@ void loop() {
     metersTraveled = (totalTics0+totalTics1+totalTics2+totalTics3)/4/45*.51867;
     //remove decimal for transfer
     metersTraveled = metersTraveled*100;
-    Serial.println(String(int(metersTraveled))+","
+//    Serial.println(String(int(metersTraveled))+","
+//                   +String(int(returnVariablesWheel0.currentWheelAngle))+","
+//                   +String(int(returnVariablesWheel1.currentWheelAngle))+","
+//                   +String(int(returnVariablesWheel2.currentWheelAngle))+","
+//                   +String(int(returnVariablesWheel3.currentWheelAngle))+","
+//                   +String(int(returnVariablesWheel0.speedCheck))+","
+//                   +String(int(returnVariablesWheel1.speedCheck))+","
+//                   +String(int(returnVariablesWheel2.speedCheck))+","
+//                   +String(int(returnVariablesWheel3.speedCheck)));
+    
+     Serial.println(String(int(returnVariablesWheel3.hubIerror))+","
+                   +String(int(returnVariablesWheel3.hubPerror))+","
+                   +String(int(returnVariablesWheel3.hubDerror))+","
                    +String(int(returnVariablesWheel0.currentWheelAngle))+","
                    +String(int(returnVariablesWheel1.currentWheelAngle))+","
                    +String(int(returnVariablesWheel2.currentWheelAngle))+","
                    +String(int(returnVariablesWheel3.currentWheelAngle))+","
+                   +String(int(returnVariablesWheel0.speedCheck))+","
+                   +String(int(returnVariablesWheel1.speedCheck))+","
+                   +String(int(returnVariablesWheel2.speedCheck))+","
+                   +String(int(returnVariablesWheel3.speedCheck))+","
                    +String(int(returnVariablesWheel0.currentWheelRPM))+","
                    +String(int(returnVariablesWheel1.currentWheelRPM))+","
                    +String(int(returnVariablesWheel2.currentWheelRPM))+","
                    +String(int(returnVariablesWheel3.currentWheelRPM)));
+//    
+    
+    
+
 
     //returnVariablesWheel0.hubIerror
     // if it changes to something above 50

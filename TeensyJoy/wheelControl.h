@@ -11,6 +11,7 @@ class wheelControl {
   float lastcycleRPM;
   float curRPM;
   float lastDesiredRPM;
+  float desiredHubRPM;
   float RPMincrement;
   float desiredRPM;
   int speedCheck;

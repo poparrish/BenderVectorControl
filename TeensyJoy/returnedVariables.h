@@ -7,4 +7,7 @@ struct returnVariables {
   bool planMotorDirection;
   bool backToZero;   
   float hubIerror;
+  float hubPerror;
+  float hubDerror;
+  int desiredHubRPM;
 };

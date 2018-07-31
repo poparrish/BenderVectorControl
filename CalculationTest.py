@@ -76,10 +76,9 @@ def start():
     :return: nothing
     """
     #NOTE -velocity_vector cannot be translation theta...need new logic to do trans+rot
-    speed = 0
+    speed = 1
     theta_dot = 40
-    velocity_vector = -45
-
+    velocity_vector = -50
     print str('W0' + calcWheel(speed, velocity_vector, theta_dot, psi0) + '\n')
     print str('W1' + calcWheel(speed, velocity_vector, theta_dot, psi1) + '\n')
     print str('W2' + calcWheel(speed, velocity_vector, theta_dot, psi2) + '\n')

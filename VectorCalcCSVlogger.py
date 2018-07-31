@@ -14,7 +14,7 @@ import sys
 
 
 ser = serial.Serial('/dev/ttyACM0', 250000)
-Hz = 10
+Hz = 15
 LENGTH = .66675
 WIDTH = .6223
 RADIUS = math.sqrt(LENGTH/2*LENGTH/2+WIDTH/2*WIDTH/2)
@@ -85,7 +85,8 @@ def getLatestData():
         #toParse = "8.02,5,2,-19,90"
         parsed = toParse.split(",")
         data = []
-        for num in range(0,9):
+        #NOTE: range depends on what variables are set to return in TeensyJoy
+        for num in range(0,15):
             try:
                 data.append(int(parsed[num]))
             except ValueError:
@@ -103,41 +104,52 @@ def start():
     global count
     global matrix
     start = time.time()
+    #######RAMP DOWN#######
     # print count
-    # if count < 40 :
+    # if count < 60 :
     #     speed = 1.4
     #     #speed = .5
-    # elif (count >= 40) and (count <= 80) :
+    # elif (count >= 60) and (count <= 120) :
     #     speed = .9
     # else:
     #     speed = .4
     # #speed = 1
     # theta_dot = 0
+    ########RAMP UP#######
     print count
-    if count < 40 :
+    if count < 60 :
         speed = .4
         #speed = .5
-    elif (count < 80) and (count >= 40) :
+    elif (count < 120) and (count >= 60) :
         speed = .9
     else:
         speed = 1.4
     #speed = 1
     theta_dot = 0
     print speed
+    ########ROT RIGHT + SPEED########
+    # speed = 1
+    # theta_dot = 0
+    ########ROT LEFT + SPEED#########
+    # speed = .8
+    # theta_dot = -20
+
     data = getLatestData()
     #data.append(int(speed))
     if data:
 
         #shift floats back to the correct decimal place. Shifted over prior to sending in arduino
         # to make python deserializing simpler
-        metersTraveled = data[0]
-        #metersTraveled = float(metersTraveled) / 100
-        data[0] = metersTraveled
+
+        # metersTraveled = data[0]
+        # metersTraveled = float(metersTraveled) / 100
+        # data[0] = metersTraveled
         speedRPM = speed / 0.0085922
         data.append(speedRPM)
-
+        #velocity_vector = metersTraveled * theta_dot * -1
         #write changes to wheels
-        velocity_vector = metersTraveled * theta_dot * -1
+
+        velocity_vector = 0;
         ser.write(str('W0'+calcWheel(speed, velocity_vector, theta_dot, psi0)+'\n'))
         ser.write(str('W1'+calcWheel(speed, velocity_vector, theta_dot, psi1)+'\n'))
         ser.write(str('W2'+calcWheel(speed, velocity_vector, theta_dot, psi2)+'\n'))
@@ -145,10 +157,10 @@ def start():
         ser.reset_input_buffer()
 
         #log changes to .csv file
-        writer = csv.writer(open('test23.csv', "wb"))
+        writer = csv.writer(open('PID_stepUp_mediumBatt.csv', "wb"))
         matrix.append(data)
 
-        if count > 120:
+        if count > 180:
             for entries in matrix:
                 print matrix
                 cols = zip(entries)
