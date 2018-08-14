@@ -597,19 +597,8 @@ void loop() {
     metersTraveled = (totalTics0+totalTics1+totalTics2+totalTics3)/4/45*.51867;
     //remove decimal for transfer
     metersTraveled = metersTraveled*100;
-//    Serial.println(String(int(metersTraveled))+","
-//                   +String(int(returnVariablesWheel0.currentWheelAngle))+","
-//                   +String(int(returnVariablesWheel1.currentWheelAngle))+","
-//                   +String(int(returnVariablesWheel2.currentWheelAngle))+","
-//                   +String(int(returnVariablesWheel3.currentWheelAngle))+","
-//                   +String(int(returnVariablesWheel0.speedCheck))+","
-//                   +String(int(returnVariablesWheel1.speedCheck))+","
-//                   +String(int(returnVariablesWheel2.speedCheck))+","
-//                   +String(int(returnVariablesWheel3.speedCheck)));
-    
-     Serial.println(String(int(returnVariablesWheel3.hubIerror))+","
-                   +String(int(returnVariablesWheel3.hubPerror))+","
-                   +String(int(returnVariablesWheel3.hubDerror))+","
+
+    Serial.println(String(int(metersTraveled))+","
                    +String(int(returnVariablesWheel0.currentWheelAngle))+","
                    +String(int(returnVariablesWheel1.currentWheelAngle))+","
                    +String(int(returnVariablesWheel2.currentWheelAngle))+","
@@ -617,11 +606,36 @@ void loop() {
                    +String(int(returnVariablesWheel0.speedCheck))+","
                    +String(int(returnVariablesWheel1.speedCheck))+","
                    +String(int(returnVariablesWheel2.speedCheck))+","
-                   +String(int(returnVariablesWheel3.speedCheck))+","
-                   +String(int(returnVariablesWheel0.currentWheelRPM))+","
-                   +String(int(returnVariablesWheel1.currentWheelRPM))+","
-                   +String(int(returnVariablesWheel2.currentWheelRPM))+","
-                   +String(int(returnVariablesWheel3.currentWheelRPM)));
+                   +String(int(returnVariablesWheel3.speedCheck)));
+
+
+//    Serial.println(String(int(returnVariablesWheel0.currentWheelAngle))+","
+//                   +String(int(returnVariablesWheel1.currentWheelAngle))+","
+//                   +String(int(returnVariablesWheel2.currentWheelAngle))+","
+//                   +String(int(returnVariablesWheel3.currentWheelAngle))+","
+//                   +String(int(returnVariablesWheel0.speedCheck))+","
+//                   +String(int(returnVariablesWheel1.speedCheck))+","
+//                   +String(int(returnVariablesWheel2.speedCheck))+","
+//                   +String(int(returnVariablesWheel3.speedCheck))+","
+//                   +String(int(returnVariablesWheel0.currentWheelRPM))+","
+//                   +String(int(returnVariablesWheel1.currentWheelRPM))+","
+//                   +String(int(returnVariablesWheel2.currentWheelRPM))+","
+//                   +String(int(returnVariablesWheel3.currentWheelRPM))+","
+//                   +String(int(returnVariablesWheel3.hubIerror))+","
+//                   +String(int(returnVariablesWheel3.hubPerror))+","
+//                   +String(int(returnVariablesWheel3.hubDerror)));
+    
+//     Serial.println(String(int(returnVariablesWheel3.hubIerror))+","
+//                   +String(int(returnVariablesWheel3.hubPerror))+","
+//                   +String(int(returnVariablesWheel3.hubDerror))+","
+//                   +String(int(returnVariablesWheel0.speedCheck))+","
+//                   +String(int(returnVariablesWheel1.speedCheck))+","
+//                   +String(int(returnVariablesWheel2.speedCheck))+","
+//                   +String(int(returnVariablesWheel3.speedCheck))+","
+//                   +String(int(returnVariablesWheel0.currentWheelRPM))+","
+//                   +String(int(returnVariablesWheel1.currentWheelRPM))+","
+//                   +String(int(returnVariablesWheel2.currentWheelRPM))+","
+//                   +String(int(returnVariablesWheel3.currentWheelRPM)));
 //    
     
     

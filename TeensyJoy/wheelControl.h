@@ -7,7 +7,7 @@ class wheelControl {
   float RPMerror;
   float DerRPMerror;
   float lastCycleSpeedCheck;
-  float speedCheckfloat;
+  float speedCheckFloat;
   float lastcycleRPM;
   float curRPM;
   float lastDesiredRPM;
@@ -21,8 +21,8 @@ class wheelControl {
   int cutoff;
   float hubPerror, hubIerror, hubDerror;
   float hubKp, hubKi, hubKd;
-  float lasthubPerror;
-  float lastSpeedCheckfloat;
+  float lastHubPerror;
+  float lastSpeedCheckFloat;
   
   // inits for planetary motor
 

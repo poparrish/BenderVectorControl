@@ -3,6 +3,8 @@ import math
 import serial
 import rospy
 from std_msgs.msg import String
+import csv
+import sys
 
 # Author: parker (the bodaciousjedi)
 #teensyWrite_node is subscribed to the 'vectors' topic from VectorCalc_node
@@ -28,6 +30,8 @@ total_angle = 0
 desired_angle = 0
 current_angle = 0
 reset = False
+
+matrix = []
 
 
 
@@ -63,8 +67,7 @@ def calcWheel(speed, velocity_vector, theta_dot, wheel_psi, pointTurnAngle, poin
     else:
         if math.fabs(rot_speed) < .001:  # just translation
             wheel_theta = velocity_vector
-            #wheel_speed = speed / 0.0085922
-            wheel_speed = speed / 0.0106395  # for yes orange tread
+            wheel_speed = speed / 0.0085922
             wheelString = str('B' + str(wheel_theta) + 'S' + str(wheel_speed))
             return wheelString
         else:
@@ -84,8 +87,7 @@ def calcWheel(speed, velocity_vector, theta_dot, wheel_psi, pointTurnAngle, poin
             wheel_speed = math.sqrt(speed * speed + rot_speed * rot_speed - 2 * speed * rot_speed * math.cos(sup_angle_rad))
             delta_theta = math.asin((math.sin(sup_angle_rad) * rot_speed) / wheel_speed)
             wheel_theta = velocity_vector_rad + delta_theta
-            #wheel_speed = wheel_speed / 0.0085922  # for no orange tread
-            wheel_speed = wheel_speed / 0.0106395  # for yes orange tread
+            wheel_speed = wheel_speed / 0.0085922  # for no orange tread
             wheel_theta = wheel_theta * 57.2958
             wheelString = str('B' + str(int(wheel_theta)) + 'S' + str(int(wheel_speed)))
             #print plan_angle
@@ -103,7 +105,7 @@ def getLatestData():
         toParse = ser.readline()
         parsed = toParse.split(",")
         data = []
-        for num in range(0, 9):
+        for num in range(0, 15):
             try:
                 data.append(int(parsed[num]))
             except ValueError:
@@ -167,6 +169,8 @@ def callback(data):
     global desired_angle
     global current_angle
     global reset
+    global count
+    global matrix
 
     toParse = data.data.split(",")
     vectors = []
@@ -236,6 +240,21 @@ def callback(data):
             ser.write(str('W3' + calcWheel(speed, velocity_vector, theta_dot, psi3, pointTurnAngle3, pointTurnDir3) + '\n'))
             ser.reset_input_buffer()
 
+        writer = csv.writer(open('joylog1.csv', "wb"))
+
+
+        print serial
+        if count > 300:
+            for entries in matrix:
+                cols = zip(entries)
+                writer.writerow(cols)
+            print 'log finished'
+            sys.exit()
+        last_count = count
+        if(last_count == count):
+            matrix.append(serial)
+        count +=1
+
 
 def start():
     """
@@ -248,4 +267,5 @@ def start():
 
 
 if __name__ == '__main__':
+    count = 1
     start()

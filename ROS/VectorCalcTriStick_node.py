@@ -19,20 +19,21 @@ def callback(data):
     :return: nothing
     """
     global returnVectors
-    speedCap = 1.0  # M/s
-    deadBand = .05  # 5%
+    speedCap = 1.5  # M/s
+    deadBand = .1  # 5%
     turnCap = 45  #degrees for theta_dot
     slow = False
     stop = False
     yAxis = data.axes[1] * speedCap
     xAxis = data.axes[0] * speedCap * -1
-    zAxis = data.axes[2] * turnCap * -1
+    zAxis = data.axes[3] * turnCap * -1
+    trigger = data.axes[5] * speedCap
     if data.buttons[7] == 1:
         slow = True
     if data.buttons[1] == 1:
         stop = True
 
-    speed = calc_speed(xAxis, yAxis, speedCap, slow, stop)
+    speed = calc_speed(trigger, speedCap, slow, stop)
     velocity_vector = calc_bearing(xAxis, yAxis)
     theta_dot = zAxis
     returnVectors = calc_dead_band(speed, velocity_vector, theta_dot, speedCap, deadBand, turnCap)
@@ -57,17 +58,22 @@ def calc_dead_band(speed, velocity_vector, theta_dot, speedCap, deadBand, turnCa
     return returnVectors
 
 
-def calc_speed(xAxis, yAxis, speedCap, slow, stop):
+def calc_speed(trigger, speedCap, slow, stop):
     """
     takes raw joystick data in and determines what speed to write
-    :param xAxis: float 0-1 that represents joystick location on the xAxis
-    :param yAxis: float 0-1 that represents joystick location on the yAxis
-    :param speedCap: max allowed speed in M/s
+    :param speed: input from xbox trigger
     :param slow: bool for if slow button is pressed
     :param stop: bool for if stop button is pressed
     :return: speed. bender speed in M/s
     """
-    speed = math.fabs(xAxis * xAxis + yAxis * yAxis)
+    #print trigger
+    if trigger > 0:
+        speed = (speedCap-trigger)*.5
+    else:
+        speed = trigger*-1*.5+.5
+
+
+    #speed = trigger
     if stop:
         speed = 0
     if speed > speedCap:

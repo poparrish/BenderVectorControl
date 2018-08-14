@@ -40,13 +40,16 @@ def calcWheel(speed, velocity_vector, theta_dot, wheel_psi):
     rot_speed = math.fabs(theta_dot_rad) * RADIUS
     # START calcWheel first determine what combination of trans + rot
     if math.fabs(speed) < 0.05:
+        wheelString = str('B0S0')
         if math.fabs(rot_speed) > .001:
             print 'first if'
+        return wheelString
     # todo point turn
     else:
         if math.fabs(rot_speed) < .001:  # just translation
             wheel_theta = velocity_vector
-            wheel_speed = speed / 0.0085922
+            #wheel_speed = speed / 0.0085922
+            wheel_speed = speed / 0.0106395  # for yes orange tread
             wheelString = str('B' + str(wheel_theta) + 'S' + str(wheel_speed))
             return wheelString
         else:
@@ -66,7 +69,8 @@ def calcWheel(speed, velocity_vector, theta_dot, wheel_psi):
             wheel_speed = math.sqrt(speed * speed + rot_speed * rot_speed - 2 * speed * rot_speed * math.cos(sup_angle_rad))
             delta_theta = math.asin((math.sin(sup_angle_rad) * rot_speed) / wheel_speed)
             wheel_theta = velocity_vector_rad + delta_theta
-            wheel_speed = wheel_speed / 0.0085922  # for no orange tread
+            #wheel_speed = wheel_speed / 0.0085922  # for no orange tread
+            wheel_speed = wheel_speed / 0.0106395  # for yes orange tread
             wheel_theta = wheel_theta * 57.2958
             wheelString = str('B' + str(int(wheel_theta)) + 'S' + str(int(wheel_speed)))
             #print plan_angle
@@ -86,7 +90,7 @@ def getLatestData():
         parsed = toParse.split(",")
         data = []
         #NOTE: range depends on what variables are set to return in TeensyJoy
-        for num in range(0,15):
+        for num in range(0,11):
             try:
                 data.append(int(parsed[num]))
             except ValueError:
@@ -105,28 +109,34 @@ def start():
     global matrix
     start = time.time()
     #######RAMP DOWN#######
-    # print count
-    # if count < 60 :
-    #     speed = 1.4
-    #     #speed = .5
-    # elif (count >= 60) and (count <= 120) :
-    #     speed = .9
-    # else:
-    #     speed = .4
-    # #speed = 1
-    # theta_dot = 0
-    ########RAMP UP#######
     print count
     if count < 60 :
-        speed = .4
+        speed = 1.4
         #speed = .5
-    elif (count < 120) and (count >= 60) :
+    elif (count >= 60) and (count <= 120) :
         speed = .9
     else:
-        speed = 1.4
+        speed = .4
     #speed = 1
     theta_dot = 0
-    print speed
+    ########RAMP UP#######
+    # print count
+    # if count < 60 :
+    #     speed = .4
+    #     #speed = .5
+    # elif (count < 120) and (count >= 60) :
+    #     speed = .9
+    # else:
+    #     speed = 1.4
+    # #speed = 1
+    # theta_dot = 0
+    # print speed
+    ########RAMP UP#######
+    # if count < 80:
+    #     speed = .4
+    # else:
+    #     speed = 1.4
+    # theta_dot = 0
     ########ROT RIGHT + SPEED########
     # speed = 1
     # theta_dot = 0
@@ -144,8 +154,9 @@ def start():
         # metersTraveled = data[0]
         # metersTraveled = float(metersTraveled) / 100
         # data[0] = metersTraveled
-        speedRPM = speed / 0.0085922
+        speedRPM = speed / 0.0106395
         data.append(speedRPM)
+        #data.append(millis)
         #velocity_vector = metersTraveled * theta_dot * -1
         #write changes to wheels
 
@@ -157,7 +168,7 @@ def start():
         ser.reset_input_buffer()
 
         #log changes to .csv file
-        writer = csv.writer(open('PID_stepUp_mediumBatt.csv', "wb"))
+        writer = csv.writer(open('PID_stepUp_Steve_kD.csv', "wb"))
         matrix.append(data)
 
         if count > 180:

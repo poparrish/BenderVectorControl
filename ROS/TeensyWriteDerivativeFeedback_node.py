@@ -29,9 +29,7 @@ desired_angle = 0
 current_angle = 0
 reset = False
 
-
-
-def calcWheel(speed, velocity_vector, theta_dot, wheel_psi, pointTurnAngle, pointTurnDir):
+def calcWheel(speed, velocity_vector, theta_dot, wheel_psi):
     """
     this is the method that actually does the calculations. this takes desired vectors and outputs data for the
     individual wheels. nearly identical to the writeup that Dr. Swanson produced.
@@ -46,15 +44,7 @@ def calcWheel(speed, velocity_vector, theta_dot, wheel_psi, pointTurnAngle, poin
     rot_speed = math.fabs(theta_dot_rad) * RADIUS
     if math.fabs(speed) < 0.05:
         if math.fabs(rot_speed) > .001:#point rotation
-            wheel_theta = pointTurnAngle
-            wheel_speed = theta_dot * 2
-            print theta_dot
-            if theta_dot > 0:
-                wheel_speed *= pointTurnDir
-            else:
-                wheel_speed *= pointTurnDir
-            wheelString = str('B' + str(wheel_theta) + 'S' + str(wheel_speed))
-            #wheelString = str('B0' + 'S0')
+            wheelString = str('B0' + 'S0')
             return wheelString
         else:
             wheel_theta = velocity_vector
@@ -63,8 +53,7 @@ def calcWheel(speed, velocity_vector, theta_dot, wheel_psi, pointTurnAngle, poin
     else:
         if math.fabs(rot_speed) < .001:  # just translation
             wheel_theta = velocity_vector
-            #wheel_speed = speed / 0.0085922
-            wheel_speed = speed / 0.0106395  # for yes orange tread
+            wheel_speed = speed / 0.0085922
             wheelString = str('B' + str(wheel_theta) + 'S' + str(wheel_speed))
             return wheelString
         else:
@@ -84,8 +73,7 @@ def calcWheel(speed, velocity_vector, theta_dot, wheel_psi, pointTurnAngle, poin
             wheel_speed = math.sqrt(speed * speed + rot_speed * rot_speed - 2 * speed * rot_speed * math.cos(sup_angle_rad))
             delta_theta = math.asin((math.sin(sup_angle_rad) * rot_speed) / wheel_speed)
             wheel_theta = velocity_vector_rad + delta_theta
-            #wheel_speed = wheel_speed / 0.0085922  # for no orange tread
-            wheel_speed = wheel_speed / 0.0106395  # for yes orange tread
+            wheel_speed = wheel_speed / 0.0085922  # for no orange tread
             wheel_theta = wheel_theta * 57.2958
             wheelString = str('B' + str(int(wheel_theta)) + 'S' + str(int(wheel_speed)))
             #print plan_angle
@@ -96,7 +84,6 @@ def getLatestData():
     """
     parses the data in the serial buffer sent back from the teensy. Currently I believe we are sending the total
     distance traveled in meters, the current angle of each planetary motor, and the current speed of each hub motor.
-    NOTE: Teensy should return currentWheelAngle in the main .ino class!
     :return:
     """
     while ser.inWaiting() > 0:
@@ -116,7 +103,6 @@ def checkDir(current_angle, desired_angle):
     a number representing whether the difference should be added or subtracted to the total_angle
     :param current_angle: current angle represented as a range of 0to360 going clockwise
     :param desired_angle: desired angle reported from joystick data on the same range as current_angle
-
     :return: int,difference.
     """
     difference = 0
@@ -156,9 +142,10 @@ def checkDir(current_angle, desired_angle):
 
 def callback(data):
     """
-    this runs everytime the ROS subscriber is updated. belive its every 15hz. This writes data to the teensy, and tracks
+    this runs everytime the ROS subscriber is updated. belive its every 10hz. This writes data to the teensy, and tracks
     for over wrapping on the wheels to avoid twisted wires.
-    :param data: list of 3 vectors received from subscriber
+    NOTE: Teensy should return currentWheelAngle in the main class!
+    :param data: list of 3 vectors recieved from subscriber
     :return: nothing
     """
     global desired_total_angle
@@ -167,7 +154,6 @@ def callback(data):
     global desired_angle
     global current_angle
     global reset
-
     toParse = data.data.split(",")
     vectors = []
     for num in range(0, 3):
@@ -199,16 +185,6 @@ def callback(data):
     #intelligent zeroing if wires wind up too much & writes data to the teensy
     if ((serial[1] or serial[2] or serial[3] or serial[4]) > (360*MAX_TURNS)) or ((serial[1] or serial[2] or serial[3] or serial[4]) < (-360 * MAX_TURNS)):
         reset = True
-
-    pointTurnAngle0 = -45
-    pointTurnAngle1 = 45
-    pointTurnAngle2 = -45
-    pointTurnAngle3 = 45
-    pointTurnDir0 = -1
-    pointTurnDir1 = -1
-    pointTurnDir2 = 1
-    pointTurnDir3 = 1
-
     if serial:
         if(reset):
             desired_total_angle = 0
@@ -217,10 +193,10 @@ def callback(data):
             speed = vectors[0] * .01
             print 'resetting'
             print desired_total_angle
-            ser.write(str('W0' + calcWheel(speed, velocity_vector, theta_dot, psi0, pointTurnAngle0, pointTurnDir0) + '\n'))
-            ser.write(str('W1' + calcWheel(speed, velocity_vector, theta_dot, psi1, pointTurnAngle1, pointTurnDir1) + '\n'))
-            ser.write(str('W2' + calcWheel(speed, velocity_vector, theta_dot, psi2, pointTurnAngle2, pointTurnDir2) + '\n'))
-            ser.write(str('W3' + calcWheel(speed, velocity_vector, theta_dot, psi3, pointTurnAngle3, pointTurnDir3) + '\n'))
+            ser.write(str('W0' + calcWheel(speed, velocity_vector, theta_dot, psi0) + '\n'))
+            ser.write(str('W1' + calcWheel(speed, velocity_vector, theta_dot, psi1) + '\n'))
+            ser.write(str('W2' + calcWheel(speed, velocity_vector, theta_dot, psi2) + '\n'))
+            ser.write(str('W3' + calcWheel(speed, velocity_vector, theta_dot, psi3) + '\n'))
             ser.reset_input_buffer()
             if(serial[1] == 0 and serial[2] == 0 and serial[3] == 0 and serial[4] == 0):
                 reset = False
@@ -230,10 +206,10 @@ def callback(data):
             velocity_vector = desired_total_angle
             theta_dot = vectors[2]
             speed = vectors[0] * .01
-            ser.write(str('W0' + calcWheel(speed, velocity_vector, theta_dot, psi0, pointTurnAngle0, pointTurnDir0) + '\n'))
-            ser.write(str('W1' + calcWheel(speed, velocity_vector, theta_dot, psi1, pointTurnAngle1, pointTurnDir1) + '\n'))
-            ser.write(str('W2' + calcWheel(speed, velocity_vector, theta_dot, psi2, pointTurnAngle2, pointTurnDir2) + '\n'))
-            ser.write(str('W3' + calcWheel(speed, velocity_vector, theta_dot, psi3, pointTurnAngle3, pointTurnDir3) + '\n'))
+            ser.write(str('W0' + calcWheel(speed, velocity_vector, theta_dot, psi0) + '\n'))
+            ser.write(str('W1' + calcWheel(speed, velocity_vector, theta_dot, psi1) + '\n'))
+            ser.write(str('W2' + calcWheel(speed, velocity_vector, theta_dot, psi2) + '\n'))
+            ser.write(str('W3' + calcWheel(speed, velocity_vector, theta_dot, psi3) + '\n'))
             ser.reset_input_buffer()
 
 
