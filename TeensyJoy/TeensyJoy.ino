@@ -123,7 +123,7 @@ boolean FirstPassWheel0 = true;
 boolean backToZeroWheel0 = false;
 float AvgDeltaTimeWheel0 = 10000001;
 int iWheel0;
-float DeltaTimeWheel0[40];
+float DeltaTimeWheel0[300];
 
 /*
  * This method is called when the interrupt for wheel 0's hub (hall sensor) goes high. It is calculating the average time 
@@ -148,12 +148,17 @@ void counterWheel0() {
         increment the counter for the next interrupt.
     */
     CurrentTimeWheel0 = millis();
-    DeltaTimeWheel0[countWheel0] = (float)(CurrentTimeWheel0 - LastIntTimeWheel0);
+    if((float)(CurrentTimeWheel0 - LastIntTimeWheel0) > 2.00){
+      DeltaTimeWheel0[countWheel0] = (float)(CurrentTimeWheel0 - LastIntTimeWheel0);
+      for (iWheel0 = 0; iWheel0 <= countWheel0; iWheel0++) {
+        SumWheel0 = SumWheel0 + DeltaTimeWheel0[iWheel0];  
+//        Serial.println(DeltaTimeWheel0[iWheel0]);
+      }
+    }
     
     LastIntTimeWheel0 = CurrentTimeWheel0;
-    for (iWheel0 = 0; iWheel0 <= countWheel0; iWheel0++) {
-      SumWheel0 = SumWheel0 + DeltaTimeWheel0[iWheel0];  
-    }
+    
+//    Serial.println("End of ISR");
     AvgDeltaTimeWheel0 = SumWheel0 /(float)(countWheel0 + 1);
     SumWheel0 = 0;
     countWheel0++;
@@ -195,7 +200,7 @@ boolean FirstPassWheel1 = true;
 boolean backToZeroWheel1 = false;
 float AvgDeltaTimeWheel1 = 10000001;
 int iWheel1;
-float DeltaTimeWheel1[40];
+float DeltaTimeWheel1[300];
 
 void counterWheel1() {
 
@@ -214,12 +219,17 @@ void counterWheel1() {
         increment the counter for the next interrupt.
     */
     CurrentTimeWheel1 = millis();
-    DeltaTimeWheel1[countWheel1] = (float)(CurrentTimeWheel1 - LastIntTimeWheel1);
+    if((float)(CurrentTimeWheel1 - LastIntTimeWheel1) > 2.00){
+      DeltaTimeWheel1[countWheel1] = (float)(CurrentTimeWheel1 - LastIntTimeWheel1);
+      for (iWheel1 = 0; iWheel1 <= countWheel1; iWheel1++) {
+        SumWheel1 = SumWheel1 + DeltaTimeWheel1[iWheel1];  
+//        Serial.println(DeltaTimeWheel0[iWheel0]);
+      }
+    }
     
     LastIntTimeWheel1 = CurrentTimeWheel1;
-    for (iWheel1 = 0; iWheel1 <= countWheel1; iWheel1++) {
-      SumWheel1 = SumWheel1 + DeltaTimeWheel1[iWheel1];  
-    }
+    
+//    Serial.println("End of ISR");
     AvgDeltaTimeWheel1 = SumWheel1 /(float)(countWheel1 + 1);
     SumWheel1 = 0;
     countWheel1++;
@@ -261,7 +271,7 @@ boolean FirstPassWheel2 = true;
 boolean backToZeroWheel2 = false;
 float AvgDeltaTimeWheel2 = 10000001;
 int iWheel2;
-float DeltaTimeWheel2[40];
+float DeltaTimeWheel2[300];
 
 void counterWheel2() {
   // Need first pass logic to set the last interrupt time to get an accurate time between interrupts on the second pass
@@ -279,12 +289,17 @@ void counterWheel2() {
         increment the counter for the next interrupt.
     */
     CurrentTimeWheel2 = millis();
-    DeltaTimeWheel2[countWheel2] = (float)(CurrentTimeWheel2 - LastIntTimeWheel2);
+    if((float)(CurrentTimeWheel2 - LastIntTimeWheel2) > 2.00){
+      DeltaTimeWheel2[countWheel2] = (float)(CurrentTimeWheel2 - LastIntTimeWheel2);
+      for (iWheel2 = 0; iWheel2 <= countWheel2; iWheel2++) {
+        SumWheel2 = SumWheel2 + DeltaTimeWheel2[iWheel2];  
+//        Serial.println(DeltaTimeWheel0[iWheel0]);
+      }
+    }
     
     LastIntTimeWheel2 = CurrentTimeWheel2;
-    for (iWheel2 = 0; iWheel2 <= countWheel2; iWheel2++) {
-      SumWheel2 = SumWheel2 + DeltaTimeWheel2[iWheel2];  
-    }
+    
+//    Serial.println("End of ISR");
     AvgDeltaTimeWheel2 = SumWheel2 /(float)(countWheel2 + 1);
     SumWheel2 = 0;
     countWheel2++;
@@ -326,7 +341,9 @@ boolean FirstPassWheel3 = true;
 boolean backToZeroWheel3 = false;
 float AvgDeltaTimeWheel3 = 10000001;
 int iWheel3;
-float DeltaTimeWheel3[40];
+float DeltaTimeWheel3[300];
+
+float wh0avg = 100000;
 
 void counterWheel3() {
   // Need first pass logic to set the last interrupt time to get an accurate time between interrupts on the second pass
@@ -344,12 +361,17 @@ void counterWheel3() {
         increment the counter for the next interrupt.
     */
     CurrentTimeWheel3 = millis();
-    DeltaTimeWheel3[countWheel3] = (float)(CurrentTimeWheel3 - LastIntTimeWheel3);
+    if((float)(CurrentTimeWheel3 - LastIntTimeWheel3) > 2.00){
+      DeltaTimeWheel3[countWheel3] = (float)(CurrentTimeWheel3 - LastIntTimeWheel3);
+      for (iWheel3 = 0; iWheel3 <= countWheel3; iWheel3++) {
+        SumWheel3 = SumWheel3 + DeltaTimeWheel3[iWheel3];  
+//        Serial.println(DeltaTimeWheel0[iWheel0]);
+      }
+    }
     
     LastIntTimeWheel3 = CurrentTimeWheel3;
-    for (iWheel3 = 0; iWheel3 <= countWheel3; iWheel3++) {
-      SumWheel3 = SumWheel3 + DeltaTimeWheel3[iWheel3];  
-    }
+    
+//    Serial.println("End of ISR");
     AvgDeltaTimeWheel3 = SumWheel3 /(float)(countWheel3 + 1);
     SumWheel3 = 0;
     countWheel3++;
