@@ -19,7 +19,7 @@ import time
 #odometry filters are a work in progress but those are also configurable from the main loop
 
 ser = serial.Serial('/dev/ttyACM0', 250000,timeout=.1,writeTimeout=.1)
-Hz = 30
+Hz = 5
 LENGTH = .66675
 WIDTH = .6223
 MAX_TURNS = 1#how many turns the planetaries are allowed before re-zeroing
@@ -510,7 +510,8 @@ def start():
         try:
             #READ/WRITE data to Teensy
             desired_angle, currentAngle, current_RPM, desired_RPM, speedCheck, deltaTics,deltaAngle,deltaHubRPM,teensyTime = getLatestData()
-            write_to_Teensy(vectors['speed'],vectors['velocity_vector'],vectors['theta_dot'])
+            #write_to_Teensy(vectors['speed'],vectors['velocity_vector'],vectors['theta_dot'])
+            write_to_Teensy(1,0,0)
 
             # for i in metersTraveled.items():
             #     print "MetersTraveled", i
@@ -518,8 +519,8 @@ def start():
             #     print "desired_angle", i
             # for i in currentAngle.items():
             #     print "currentAngle", i
-            # for i in current_RPM.items():
-            #     print "currentRPM", i
+            for i in current_RPM.items():
+                print "currentRPM", i
             # for i in desired_RPM.items():
             #     print "desiredRPM", i
             # for i in speedCheck.items():
@@ -538,11 +539,11 @@ def start():
             else:
                 maxNull = 6
 
-            idleFilteredRPM = idle_noise_filter(current_RPM,desired_RPM)
-            filtered_RPM,lastGoodRPM,lastGoodRPMcount = best_delta_RPM(idleFilteredRPM,lastGoodRPM,maxDelta,lastGoodRPMcount,maxNull)
+            #idleFilteredRPM = idle_noise_filter(current_RPM,desired_RPM)
+            filtered_RPM,lastGoodRPM,lastGoodRPMcount = best_delta_RPM(current_RPM,lastGoodRPM,maxDelta,lastGoodRPMcount,maxNull)
             smoothed_RPM,train = box_car_filter(lastTrain,filtered_RPM,boxSize=6)
 
-
+            print "smoothed",smoothed_RPM
             #ODOMETRY from filter
             current_MPS=rpm_to_mps(smoothed_RPM)
             #NOTE: for some reason when we set lastMetersTraveled as a dict it will be mutated in the below for each loop
@@ -566,12 +567,12 @@ def start():
                                     deltaMetersTraveled[3]) / 4
 
             #TF broadcaster
-            br.sendTransform((totalX,totalY,0),
-                             tf.transformations.quaternion_from_euler(0, 0, compass['orientation']),
+            br.sendTransform((totalY,totalX,0),
+                             tf.transformations.quaternion_from_euler(0, 0, 0),
                              #(0,0,0,1),
                              rospy.Time.now(),
-                             "Bender",
-                             "world")
+                             "odom",
+                             "base_link")
 
             #LOGGING
             # dataToLog=[]
