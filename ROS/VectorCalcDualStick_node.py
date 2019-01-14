@@ -3,6 +3,8 @@ from sensor_msgs.msg import Joy
 import math
 import rospy
 from std_msgs.msg import String
+from geometry_msgs.msg import Vector3
+
 
 # Author: parker (the bodaciousjedi)
 # VectorCalc_node is subscribed to the 'joy' topic from the joy node: http://wiki.ros.org/joy
@@ -19,9 +21,9 @@ def callback(data):
     :return: nothing
     """
     global returnVectors
-    speedCap = 1.0  # M/s
+    speedCap = 1.5  # M/s
     deadBand = .05  # 5%
-    turnCap = 45  #degrees for theta_dot
+    turnCap = 100  #degrees for theta_dot
     slow = False
     stop = False
     yAxis = data.axes[1] * speedCap
@@ -115,14 +117,18 @@ def start():
     main method. where the ROS publishers and subscribers live.
     :return: nothing
     """
-    pub = rospy.Publisher('vectors', String, queue_size=1)
+    #pub = rospy.Publisher('vectors', String, queue_size=1)
     rospy.init_node('VectorQueue_node')
     r = rospy.Rate(10)
     rospy.Subscriber("joy", Joy, callback)  # use this if joystick
+    pub = rospy.Publisher("input_vectors",Vector3,queue_size=1)
     while not rospy.is_shutdown():
-        returnString = str(str(int(returnVectors[0] * 100)) + ',' + str(int(returnVectors[1])) + ',' + str(int(returnVectors[2])))
-        print returnString
-        pub.publish(returnString)
+        vectorMsg = Vector3(x=returnVectors[0],y=returnVectors[1],z=returnVectors[2])
+        #returnString = str(str(int(returnVectors[0] * 100)) + ',' + str(int(returnVectors[1])) + ',' + str(int(returnVectors[2])))
+
+        print vectorMsg
+        pub.publish(vectorMsg)
+        #pub.publish(returnString)
         r.sleep()
     rospy.spin()
 
