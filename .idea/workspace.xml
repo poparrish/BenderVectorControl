@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="7a8877de-cc3c-4b42-b646-989fad4e81ca" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.~lock.PID_stepDown_mediumBatt.csv#" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.~lock.PID_stepUp_mediumBatt.csv#" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ROS/TeensyWrite_node.py" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/TeensyWrite_node.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ROS/VectorCalcDualStick_node.py" beforeDir="false" afterPath="$PROJECT_DIR$/ROS/VectorCalcDualStick_node.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TeensyJoy/TeensyJoy.ino" beforeDir="false" afterPath="$PROJECT_DIR$/TeensyJoy/TeensyJoy.ino" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TeensyJoy/wheelControl.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/TeensyJoy/wheelControl.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TeensyJoy/wheelControl.h" beforeDir="false" afterPath="$PROJECT_DIR$/TeensyJoy/wheelControl.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VectorCalcCSVlogger.py" beforeDir="false" afterPath="$PROJECT_DIR$/VectorCalcCSVlogger.py" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>bearing</find>
+      <find>20</find>
+      <find>getLatestData</find>
+      <find>joyUp</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>velocity_vector</replace>
+    </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/JoyStick.py" />
+        <option value="$PROJECT_DIR$/JoyStickCoords.py" />
+        <option value="$PROJECT_DIR$/Vector Calc.py" />
+        <option value="$PROJECT_DIR$/Teensy.py" />
+        <option value="$PROJECT_DIR$/Teensy.py" />
+        <option value="$PROJECT_DIR$/TestCalcNoSerial.py" />
+        <option value="$PROJECT_DIR$/TestCalc.py" />
+        <option value="$PROJECT_DIR$/VectorCalcJoy.py" />
+        <option value="$PROJECT_DIR$/VectorQueue_node.py" />
+        <option value="$PROJECT_DIR$/VectorCalc.py" />
+        <option value="$PROJECT_DIR$/VectorCalc.py" />
+        <option value="$PROJECT_DIR$/VectorCalc_node.py" />
+        <option value="$PROJECT_DIR$/TeensyWrite_node.py" />
+        <option value="$PROJECT_DIR$/VectorCalcTest.py" />
+        <option value="$PROJECT_DIR$/CalculationTest.py" />
+        <option value="$PROJECT_DIR$/VectorCalcTest_DerFeedback.py" />
+        <option value="$PROJECT_DIR$/ROS/VectorCalc_node.py" />
+        <option value="$PROJECT_DIR$/ROS/VectorCalcDualStickArcade_node.py" />
+        <option value="$PROJECT_DIR$/ROS/TeensyWritelogging_node.py" />
+        <option value="$PROJECT_DIR$/ROS/TeensyWrite_node.py" />
+        <option value="$PROJECT_DIR$/ROS/VectorCalcDualStick_node.py" />
+        <option value="$PROJECT_DIR$/../../OpenCV/firstCV.py" />
+        <option value="$PROJECT_DIR$/ROS/VectorCalcTriStick_node.py" />
+        <option value="$PROJECT_DIR$/VectorCalcCSVlogger.py" />
+        <option value="$PROJECT_DIR$/Depth_Perception_test.py" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="903" />
+    <option name="y" value="60" />
+    <option name="width" value="934" />
+    <option name="height" value="1020" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="VectorSteering" type="b2602c69:ProjectViewProjectNode" />
+              <item name="VectorSteering" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="VectorSteering" type="b2602c69:ProjectViewProjectNode" />
+              <item name="VectorSteering" type="462c0819:PsiDirectoryNode" />
+              <item name="ROS" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="SearchEverywhereHistoryKey" value="code style&#9;ACTION&#9;ChangeCodeStyleScheme" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../OpenCV" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/ROS" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="VectorCalc" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="VectorSteering" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/VectorCalc.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.VectorCalc" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7a8877de-cc3c-4b42-b646-989fad4e81ca" name="Default" comment="" />
+      <created>1531114603825</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1531114603825</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="903" y="60" width="934" height="1020" extended-state="0" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.60171306" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="9" />
+      <window_info anchor="bottom" id="Python Console" order="7" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32889345" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32947367" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" />
+    </layout>
+    <layout-to-restore>
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.0032119914" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32947367" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32947367" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Python Console" order="7" />
+    </layout-to-restore>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="6" />
+    </breakpoint-manager>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/VectorCalcCSVlogger.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VectorCalcCSVlogger.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1755">
+          <caret line="123" column="40" selection-start-line="123" selection-start-column="40" selection-end-line="123" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VectorCalc_node.py" />
+    <entry file="file://$PROJECT_DIR$/TeensyWrite_node.py" />
+    <entry file="file://$PROJECT_DIR$/VectorCalc_node.py" />
+    <entry file="file://$PROJECT_DIR$/TeensyWrite_node.py" />
+    <entry file="file://$PROJECT_DIR$/TeensyWrite_node.py" />
+    <entry file="file://$PROJECT_DIR$/TeensyWrite_node.py" />
+    <entry file="file://$PROJECT_DIR$/TestCalc.py" />
+    <entry file="file://$PROJECT_DIR$/VectorCalc.py" />
+    <entry file="file://$PROJECT_DIR$/VectorCalcJoy.py" />
+    <entry file="file://$PROJECT_DIR$/TestCalc.py" />
+    <entry file="file://$PROJECT_DIR$/VectorCalc.py" />
+    <entry file="file://$PROJECT_DIR$/VectorCalcJoy.py" />
+    <entry file="file://$PROJECT_DIR$/TestCalc.py" />
+    <entry file="file://$PROJECT_DIR$/VectorCalc.py" />
+    <entry file="file://$PROJECT_DIR$/Teensy.py" />
+    <entry file="file://$PROJECT_DIR$/VectorCalc.py" />
+    <entry file="file://$PROJECT_DIR$/Teensy.py" />
+    <entry file="file://$PROJECT_DIR$/VectorCalc.py" />
+    <entry file="file://$PROJECT_DIR$/Teensy.py" />
+    <entry file="file://$PROJECT_DIR$/VectorCalc.py" />
+    <entry file="file://$PROJECT_DIR$/Teensy.py" />
+    <entry file="file://$PROJECT_DIR$/VectorCalc.py" />
+    <entry file="file://$PROJECT_DIR$/Teensy.py" />
+    <entry file="file://$PROJECT_DIR$/VectorCalc.py" />
+    <entry file="file://$PROJECT_DIR$/JoyStickCoords.py" />
+    <entry file="file://$PROJECT_DIR$/JoyStick.py" />
+    <entry file="file://$PROJECT_DIR$/JoyStickCoords.py" />
+    <entry file="file://$PROJECT_DIR$/TestCalcNoSerial.py" />
+    <entry file="file://$PROJECT_DIR$/Teensy.py" />
+    <entry file="file://$PROJECT_DIR$/TestCalc.py" />
+    <entry file="file://$PROJECT_DIR$/VectorQueue_node.py" />
+    <entry file="file://$PROJECT_DIR$/VectorCalcJoy_node.py" />
+    <entry file="file://$PROJECT_DIR$/VectorCalcJoy.py" />
+    <entry file="file://$PROJECT_DIR$/VectorCalc.py" />
+    <entry file="file://$PROJECT_DIR$/VectorCalc_node.py" />
+    <entry file="file://$PROJECT_DIR$/TeensyWrite_node.py" />
+    <entry file="file://$PROJECT_DIR$/ROS/VectorCalc_node.py" />
+    <entry file="file://$PROJECT_DIR$/ROS/VectorCalcDualStickArcade_node.py" />
+    <entry file="file://$PROJECT_DIR$/VectorCalcTest_DerFeedback.py" />
+    <entry file="file://$PROJECT_DIR$/ROS/TeensyWriteDerivativeFeedback_node.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VectorCalcTest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="675">
+          <caret line="47" column="42" selection-start-line="47" selection-start-column="42" selection-end-line="47" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Depth_Perception_test.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../OpenCV/firstCV.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="506">
+          <caret line="41" column="30" lean-forward="true" selection-start-line="41" selection-start-column="30" selection-end-line="41" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ROS/TeensyWrite_node.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="120" column="7" selection-start-line="120" selection-start-column="7" selection-end-line="120" selection-end-column="7" />
+          <folding>
+            <element signature="e#22#33#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VectorCalcCSVlogger.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="129" column="8" selection-start-line="129" selection-start-column="8" selection-end-line="129" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ROS/VectorCalcDualStick_node.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="27" column="35" selection-start-line="27" selection-start-column="35" selection-end-line="27" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ROS/VectorCalcTriStick_node.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="32" column="28" selection-start-line="32" selection-start-column="28" selection-end-line="32" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ROS/TeensyWritelogging_node.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="830">
+          <caret line="186" column="30" selection-start-line="186" selection-start-column="30" selection-end-line="186" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CalculationTest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="830">
+          <caret line="73" column="30" selection-start-line="73" selection-start-column="30" selection-end-line="73" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
