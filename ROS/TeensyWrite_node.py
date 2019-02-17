@@ -19,7 +19,7 @@ import time
 #odometry filters are a work in progress but those are also configurable from the main loop
 
 ser = serial.Serial('/dev/ttyACM0', 250000,timeout=.1,writeTimeout=.1)
-Hz = 5
+Hz = 30
 LENGTH = .66675
 WIDTH = .6223
 MAX_TURNS = 1#how many turns the planetaries are allowed before re-zeroing
@@ -455,6 +455,12 @@ def idle_noise_filter(currentRPM,desiredRPM):
 
     return idleFilteredRPM
 
+def propagation_filter():
+    """
+    This filter
+    :return:
+    """
+
 def start():
     """
     main method where ROS lives.
@@ -510,8 +516,8 @@ def start():
         try:
             #READ/WRITE data to Teensy
             desired_angle, currentAngle, current_RPM, desired_RPM, speedCheck, deltaTics,deltaAngle,deltaHubRPM,teensyTime = getLatestData()
-            #write_to_Teensy(vectors['speed'],vectors['velocity_vector'],vectors['theta_dot'])
-            write_to_Teensy(1,0,0)
+            write_to_Teensy(vectors['speed'],vectors['velocity_vector'],vectors['theta_dot'])
+            # write_to_Teensy(.7,0,0)
 
             # for i in metersTraveled.items():
             #     print "MetersTraveled", i
@@ -566,13 +572,37 @@ def start():
             totalMetersTraveled += (deltaMetersTraveled[0] + deltaMetersTraveled[1] + deltaMetersTraveled[2] +
                                     deltaMetersTraveled[3]) / 4
 
+            #flip x and y
+            fTotalX = totalY
+            fTotalY = totalX
+            print "fTotalX: ",fTotalX
+            print "fTotalY: ",fTotalY
             #TF broadcaster
-            br.sendTransform((totalY,totalX,0),
-                             tf.transformations.quaternion_from_euler(0, 0, 0),
-                             #(0,0,0,1),
-                             rospy.Time.now(),
-                             "odom",
-                             "base_link")
+
+            if compass['calibration_status'] == 3.0:
+                if compass['is_alive'] == 1:
+                    br.sendTransform((fTotalY, fTotalX, 0),
+                                     tf.transformations.quaternion_from_euler(int(compass['orientation']), 0, 0),
+                                     # (0,0,0,1),
+                                     rospy.Time.now(),
+                                     "odom",
+                                     "base_link")
+                else:
+                    print "compass warming up"
+                    br.sendTransform((fTotalY, fTotalX, 0),
+                                     tf.transformations.quaternion_from_euler(0, 0, 0),
+                                     # (0,0,0,1),
+                                     rospy.Time.now(),
+                                     "odom",
+                                     "base_link")
+            else:
+                print "compass not calibrated"
+                br.sendTransform((fTotalY, fTotalX, 0),
+                                 tf.transformations.quaternion_from_euler(0, 0, 0),
+                                 # (0,0,0,1),
+                                 rospy.Time.now(),
+                                 "odom",
+                                 "base_link")
 
             #LOGGING
             # dataToLog=[]
