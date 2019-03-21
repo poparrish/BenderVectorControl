@@ -11,7 +11,7 @@ from geometry_msgs.msg import Vector3
 #this just grabs data from the Arduino. Set frequency in start() arduino should run faster than
 #ros, but its not required.
 
-ser = serial.Serial('/dev/ttyACM0',9600)
+ser = serial.Serial('/dev/ttyUSB0',9600)
 
 def getLatestData():#with dict lookup. perhaps consider using an assert:ser.inWaiting. Avoid duplicate data=bad map
     """
@@ -25,7 +25,7 @@ def getLatestData():#with dict lookup. perhaps consider using an assert:ser.inWa
         #print "Length of Parsed: ",len(parsed)
         data = {
             'orientation': int(parsed[0]),
-            'calibration_status': int(parsed[1]),#0 is not calibrated 1 is calibrated
+            'calibration_status': int(parsed[1]),#0 is not calibrated 3 is calibrated
             'is_alive': int(parsed[2])#0 if dead 1 if transmitting
         }
         return data
@@ -37,7 +37,7 @@ def start():
     """
     pub = rospy.Publisher("orientation",Vector3,queue_size=1)
     rospy.init_node('compass_node')
-    r = rospy.Rate(10)
+    r = rospy.Rate(20)
     while not rospy.is_shutdown():
         try:
             orientation = getLatestData()
