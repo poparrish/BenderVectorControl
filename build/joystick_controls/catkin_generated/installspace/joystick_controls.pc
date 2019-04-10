@@ -1,0 +1,8 @@
+prefix=/home/bender/Downloads/BenderVectorControl-master/install
+
+Name: joystick_controls
+Description: Description of joystick_controls
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/bender/Downloads/BenderVectorControl-master/install/lib 
+Requires: 
